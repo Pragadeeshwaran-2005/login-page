@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video><br><br><br><br>
+<div class="form">
+    <form action="" class="p1" id="p1">
+        <label for="lmail">Gmail</label>
+        <input class="input" type="text" name="mail" id="lmail"> <br>
+        <label for="pass">Password</label>
+        <input class="input" type="password" name="password" id="lpass"><br>
+        <button class="button" id="login">LOGIN</button><br>
+        <div class="signup" id="signup" style="display: flex; color: rgba(255, 255, 255, 0.767); font-size: medium;gap:5px;margin:auto;">If you don't have an account <div style="color: blue; text-decoration: underline">click here</div> </div>
+    </form>
+    <form action="" class="p2" id="p2" style="display: none;">
+        <label for="uname">Username</label>
+        <input class="input" type="text" name="uname" id="uname"><br>
+        <label for="mail">Gmail</label>
+        <input class="input" type="text" name="mail" id="umail"><br>
+        <label for="upass">Password</label>
+        <input class="input" type="password" name="password" id="upass"><br>
+        <button class="button" id="sign">SIGNUP</button><br>
+        <div id="ulogin" class="ulogin" style="display: flex; color: rgba(255, 255, 255, 0.767); font-size: medium;gap:5px;margin:auto;">If you have an account <div style="color: blue; text-decoration: underline">click here</div> </div>
+    </form>
+</div>
+    <script>
+        const p1=document.getElementById("p1");
+        const p2=document.getElementById("p2");
+        const signup=document.getElementById("signup");
+        const ulogin=document.getElementById("ulogin");
+        const login=document.getElementById("login");
+        const sign=document.getElementById("sign")
+
+        login.addEventListener("click",async(e)=>{
+            e.preventDefault()
+            const mail=document.getElementById("lmail").value;
+            const pass=document.getElementById("lpass").value;
+            fetch("http://localhost:5000/login",{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({mail:mail,password:pass})
+            })
+            .then(res=>{
+                 return res.json()
+            }).then(res=>{
+                if(res.statusCode===200){
+                    document.write("Logged in successfully")
+                }else{
+                    alert(res.msg)
+                }
+            })
+        })
+
+
+
+
+        sign.addEventListener('click',async(e)=>{
+            e.preventDefault()
+            const uname=document.getElementById("uname").value
+            const umail=document.getElementById("umail").value
+            const upass=document.getElementById("upass").value
+            fetch('http://localhost:5000/signup',{
+                method:'POST',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({mail:umail,password:upass})
+            })
+            .then(res=>{
+                return res.json()
+            }).then(res=>{
+                alert(res.msg)
+            })
+        })
+
+
+
+        ulogin.addEventListener("click",()=>{
+            p1.style.display="flex";
+            p2.style.display="none";
+            p1.style.flexDirection="column";
+            p1.style.gap="10px";
+        })
+        signup.addEventListener("click",()=>{
+            p1.style.display="none";
+            p2.style.display="flex";
+            p2.style.flexDirection="column";
+            p2.style.gap="10px";    
+        })
+        
+    </script>
+</body>
+</html>

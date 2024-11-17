@@ -1,0 +1,100 @@
+video{
+    position : fixed;
+    min-height: 100%;
+    min-width: 100%;
+    right: 0;
+    bottom: 0;
+
+}
+.p1,.p2{
+    position : relative;
+    width: 300px;
+    height: auto;
+    margin:auto;
+    display: flex;
+    flex-direction: column;
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 5px 5px 0px 2px black;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding :20px;
+    gap: 10px;
+    animation : entry 1.5s;
+    transition: 0.5s;
+}
+
+.p1:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+.p2:hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+label{
+    color:white;
+    font-weight: bold;
+    font-size: large;
+    text-shadow: 1px 1px 1px black;
+}
+
+.button{
+    background-color: rgba(240, 248, 255, 0);
+    border: 2px solid white;
+    color: white;
+    width: auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 0px 2px black;
+    animation: entry 1.5s;
+}
+
+.input{
+
+   background-color: rgba(176, 224, 230, 0);
+   border: 2px solid white;
+    padding: 10px;
+    color: white;
+    font-size: medium;
+    box-shadow: 5px 5px 0px 2px black;
+    border-radius:10px;
+    animation: entry 1.5s;
+}
+::placeholder {
+    color: rgb(242, 242, 242);
+    opacity: 50%;
+  }
+*:focus {
+    outline: none;
+}
+
+.button:hover{
+    background-color: rgba(240, 248, 255, 0.349);
+    cursor: pointer;
+}
+.button:focus{
+    background-color: black;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.signup,.ulogin:hover{
+    cursor: pointer;
+}
+
+
+@keyframes entry{
+    0%{
+        transform: translateY(-40px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
